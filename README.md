@@ -5,7 +5,6 @@
 ## Banxa official PHP SDK
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/banxa-global/php-sdk/run-tests?label=tests)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/banxa/php-sdk.svg?style=flat-square)](https://packagist.org/packages/banxa/php-sdk)
-[![Total Downloads](https://img.shields.io/packagist/dt/banxa/php-sdk.svg?style=flat-square)](https://packagist.org/packages/banxa/php-sdk)
 
 ## Table of Contents
 
@@ -263,7 +262,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
         "paymentType"      => "WORLDPAYCREDIT",
         "name"             => "Visa/Mastercard",
         "description"      => "Conveniently buy digital currency using your personal VISA or MasterCard.",
-        "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/worldpaycredit.png",
+        "logo_url"         => "https://partner.banxa.com/images/payment-providers/worlpaycredit.png",
         "status"           => "ACTIVE",
         "supported_agents" => [
             [
@@ -302,7 +301,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
         "paymentType"      => "WORLDPAYAPPLE",
         "name"             => "Apple Pay",
         "description"      => "Conveniently buy digital currency using your Apple Pay wallet.",
-        "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/apple-pay.png",
+        "logo_url"         => "https://partner.banxa.com/images/payment-providers/apple-pay.png",
         "status"           => "ACTIVE",
         "supported_agents" => [
             [
@@ -359,7 +358,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
     "paymentType"      => "WORLDPAYAPPLE",
     "name"             => "Apple Pay",
     "description"      => "Conveniently buy digital currency using your Apple Pay wallet.",
-    "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/apple-pay.png",
+    "logo_url"         => "https://partner.banxa.com/images/payment-providers/apple-pay.png",
     "status"           => "ACTIVE",
     "supported_agents" => [
         [
@@ -375,7 +374,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
             "browser" => "safari"
         ]
     ],
-    "type"             => "CRYPTO_TO_FIAT",
+    "type"             => "FIAT_TO_CRYPTO",
     "supported_fiat"   => [
         "AED",
     ],
@@ -413,10 +412,10 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
  ```php
 [
     "id"               => 6036,
-    "paymentType"      => "WORLDPAYCREDIT",
-    "name"             => "Visa/Mastercard",
-    "description"      => "Conveniently buy digital currency using your personal VISA or MasterCard.",
-    "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/worldpaycredit.png",
+    "paymentType"      => "DIRECTCREDIT",
+    "name"             => "Bank Transfer",
+    "description"      => "Sell digital currency to us and have the value directly credited to your bank account",
+    "logo_url"         => "https://partner.banxa.com/images/payment-providers/directcredit.png",
     "status"           => "ACTIVE",
     "supported_agents" => [
         [
@@ -432,7 +431,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
             "browser" => "safari"
         ]
     ],
-    "type"             => "FIAT_TO_CRYPTO",
+    "type"             => "CRYPTO_TO_FIAT",
     "supported_fiat"   => [
         "AED",
     ],
@@ -456,14 +455,11 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
 
 # Prices
 
-Get prices for [Payment Methods](#payment-methods) to obtain a payment method id for each specific fiat and coin
-combination. Should be called when a user requests prices by providing the cryptocurrency, fiat, and fiat amount.
-
-(Rate limited)
+Get prices for [Payment Methods](#payment-methods) to obtain a payment method id for each specific fiat.
 
 ### Buy order types pricing
 
-> **Fetch single available price for buy order type for a specific payment method**
+> **Fetch all available prices for buy order type**
 >```php
 > $banxa->getAllBuyPrices(
 >   $fiatCode,
@@ -534,7 +530,7 @@ combination. Should be called when a user requests prices by providing the crypt
 | `$fiatCode`        | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR see [Fiat](#fiat) to get a list all available fiats                                                              |
 | `$coinCode`        | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH see [Crypto](#crypto) to get a list all available crypto                                                         |
 | `$fiatAmount`      | `string/int/float` | `true`   | Fiat amount                                                                                                                                   |
-| `$paymentMethodId` | `string/int/float` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$paymentMethodId` | `string/int`       | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
 | `$blockchain`      | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin.                                  |
 
 **Result Example**
