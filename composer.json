@@ -1,0 +1,33 @@
+{
+    "name": "banxa/php-sdk",
+    "description": "Banxa PHP API SDK for partners",
+    "type": "library",
+    "keywords": ["php","sdk","crypto","banxa","cryptocurrencies","cryptocurrency","fiattocrypto","onramp","offramp"],
+    "homepage": "https://banxa.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Banxa",
+            "email": "info@banxa.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "mockery/mockery": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Banxa\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}
