@@ -1,5 +1,9 @@
+![Banxa](https://banxa.com/wp-content/uploads/2022/02/logo-white.png)
+
 ## Banxa official PHP SDK
 
+
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/banxa-global/php-sdk/run-tests?label=tests)
 ## Table of Contents
 
 <!-- TOC -->

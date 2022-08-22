@@ -1,6 +1,6 @@
 {
     "name": "banxa/php-sdk",
-    "description": "Banxa PHP API SDK for partners",
+    "description": "Banxa Official PHP API SDK for partners",
     "type": "library",
     "keywords": ["php","sdk","crypto","banxa","cryptocurrencies","cryptocurrency","fiattocrypto","onramp","offramp"],
     "homepage": "https://banxa.com",
