@@ -461,10 +461,10 @@ Get prices for [Payment Methods](#payment-methods) to obtain a payment method id
 > **Fetch all available prices for buy order type**
 >```php
 > $banxa->getAllBuyPrices(
->   $fiatCode,
->   $coinCode,
->   $fiatAmount,
->   $blockchain
+>     $fiatCode,
+>     $coinCode,
+>     $fiatAmount,
+>     $blockchain
 > )
 >```
 
@@ -516,11 +516,11 @@ Get prices for [Payment Methods](#payment-methods) to obtain a payment method id
 > **Fetch single price for buy order type for a specific payment method**
 > ```php
 > $banxa->getBuyPrice(
->    $fiatCode,
->    $coinCode,
->    $fiatAmount,
->    $paymentMethodId,
->    $blockchain
+>     $fiatCode,
+>     $coinCode,
+>     $fiatAmount,
+>     $paymentMethodId,
+>     $blockchain
 > )
 >```
 
@@ -875,7 +875,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $coinAmount, 
 >       $walletAddress, 
 >       $paymentMethodId
->   );
+>  );
 >```
 >
 
@@ -938,7 +938,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >$buyOrderTransaction = BuyOrderTransaction::createDynamic($accountReference, $source, $target, null, $targetAmount, $walletAddress, null, $paymentMethodId, $blockchain, $walletAddressTag); // Dynamic
 >```
 >```php
->$banxa->createBuyOrder(
+> $banxa->createBuyOrder(
 >     $buyOrderTransaction,
 >     $returnUrlOnSuccess,
 >     $returnUrlOnFailure,
@@ -946,7 +946,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >     $metadata,
 >     $readOnlyAmounts,
 >     $iframeRefererDomain,
->     );
+> );
 >```
 >
 >
@@ -977,12 +977,12 @@ specify your own amount using the createDynamic method, this will depend on your
 
 > ```php
 > $banxa->createNftBuyOrder(
->   $nftBuyOrderTransaction,
->   $nftData,
->   $returnUrlOnSuccess,
->   $returnUrlOnFailure,
->   $returnUrlOnCancelled,
->   $iframeRefererDomain
+>     $nftBuyOrderTransaction,
+>     $nftData,
+>     $returnUrlOnSuccess,
+>     $returnUrlOnFailure,
+>     $returnUrlOnCancelled,
+>     $iframeRefererDomain
 > );
 >```
 
@@ -1000,15 +1000,15 @@ specify your own amount using the createDynamic method, this will depend on your
 > **NftBuyOrderTransaction**
 >```php
 > $nftBuyOrderTransaction = NftBuyOrderTransaction::create(
->        $accountReference,
->        $fiatCode,
->        $coinCode,
->        $fiatAmount,
->        $walletAddress,
->        $paymentMethodId = null,
->        $blockchain = null,
->        $walletAddressTag = null
->   );
+>     $accountReference,
+>     $fiatCode,
+>     $coinCode,
+>     $fiatAmount,
+>     $walletAddress,
+>     $paymentMethodId = null,
+>     $blockchain = null,
+>     $walletAddressTag = null
+> );
 >```
 
 | Property            | type           | required | description                                                                                                                                   |
@@ -1027,11 +1027,11 @@ specify your own amount using the createDynamic method, this will depend on your
 
 > **NftData**
 >```php
->  $nftData = NftData::create(
->       $purchaseReference, 
->       $nft, 
->       $metaData
->   );
+> $nftData = NftData::create(
+>     $purchaseReference, 
+>     $nft, 
+>     $metaData
+> );
 >```
 
 | Property             | type     | required | description                 |
@@ -1044,11 +1044,11 @@ specify your own amount using the createDynamic method, this will depend on your
 > **Nft**
 >
 >```php
->   $nft = Nft::create(
->       $name, 
->       $collection, 
->       $nftMedia,
->   );
+> $nft = Nft::create(
+>     $name, 
+>     $collection, 
+>     $nftMedia,
+> );
 >```
 
 | Property      | type           | required | description              |
@@ -1079,7 +1079,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >
 >```php
 >
->$nftBuyOrderTransaction = NftBuyOrderTransaction::create(
+> $nftBuyOrderTransaction = NftBuyOrderTransaction::create(
 >      $accountReference, 
 >      $fiatCode, 
 >      $coinCode, 
@@ -1088,32 +1088,32 @@ specify your own amount using the createDynamic method, this will depend on your
 >      $paymentMethodId, 
 >      $blockchain, 
 >      $walletAddressTag
->   );
+> );
 >
 >
->   $nftMedia = ImageNftMedia::create($link); // OR $nftMedia = VideoNftMedia::create($link)
+> $nftMedia = ImageNftMedia::create($link); // OR $nftMedia = VideoNftMedia::create($link)
 >
 >
->   $nft = Nft::create(
->       $name, 
->       $collection, 
->       $nftMedia,
->   );
+> $nft = Nft::create(
+>     $name, 
+>     $collection, 
+>     $nftMedia,
+> );
 >
->  $nftData = NftData::create(
->       $purchaseReference, 
->       $nft, 
->       $metaData
->   );
+> $nftData = NftData::create(
+>     $purchaseReference, 
+>     $nft, 
+>     $metaData
+> );
 >
->   $banxa->createNftBuyOrder(
->       $nftBuyOrderTransaction,
->       $nftData,
->       $returnUrlOnSuccess,
->       $returnUrlOnFailure,
->       $returnUrlOnCancelled,
->       $iframeRefererDomain,
->     );
+> $banxa->createNftBuyOrder(
+>     $nftBuyOrderTransaction,
+>     $nftData,
+>     $returnUrlOnSuccess,
+>     $returnUrlOnFailure,
+>     $returnUrlOnCancelled,
+>     $iframeRefererDomain,
+> );
 >```
 >
 >
@@ -1140,13 +1140,13 @@ specify your own amount using the createDynamic method, this will depend on your
 
 > ```php
 > $banxa->createSellOrder(
->   $sellOrderTransaction,
->   $returnUrlOnSuccess,
->   $returnUrlOnFailure,
->   $returnUrlOnCancelled,
->   $metadata,
->   $readOnlyAmounts,
->   $iframeRefererDomain,
+>    $sellOrderTransaction,
+>    $returnUrlOnSuccess,
+>    $returnUrlOnFailure,
+>    $returnUrlOnCancelled,
+>    $metadata,
+>    $readOnlyAmounts,
+>    $iframeRefererDomain,
 > )
 >```
 
@@ -1173,7 +1173,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $paymentMethodId,
 >       $blockchain,
 >       $walletAddressTag,
->);
+> );
 >```
 
 | Property            | type           | required | description                                                                                                                                   |
@@ -1201,7 +1201,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $paymentMethodId,
 >       $blockchain,
 >       $walletAddressTag,
->   );
+>  );
 >```
 
 | Property            | type           | required | description                                                                                                                                   |
@@ -1220,7 +1220,7 @@ specify your own amount using the createDynamic method, this will depend on your
 
 > **sellOrderTransaction using dynamic sourceAmount or targetAmount**
 >
-> When using SellOrderTransaction::createDynamic you will need to specify `$source`(Fiat), `$target`(Coin), and
+> When using SellOrderTransaction::createDynamic you will need to specify `$source`(Coin), `$target`(Fiat), and
 > either `$sourceAmount` or `$targetAmount`
 >```php
 > $sellOrderTransaction = SellOrderTransaction::createDynamic(
@@ -1234,7 +1234,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $paymentMethodId, 
 >       $blockchain, 
 >       $walletAddressTag
->   );
+>  );
 >```
 
 | Property            | type                | required | description                                                                                                                                   |
@@ -1247,7 +1247,7 @@ specify your own amount using the createDynamic method, this will depend on your
 | `$walletAddress`    | `string/null`       | `true`   | The target wallet address to transfer the coin to - For Buy orders only                                                                       |
 | `$refundAddress`    | `string/null`       | `true`   | The refund wallet address - For sell orders only                                                                                              |
 | `$paymentMethodId`  | `int/string`        | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string`            | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                     |
+| `$blockchain`       | `string`            | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
 | `$walletAddressTag` | `string`            | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 > **Sell order full example**
@@ -1265,15 +1265,15 @@ specify your own amount using the createDynamic method, this will depend on your
 >$sellOrderTransaction = SellOrderTransaction::createDynamic($accountReference, $source, $target, null, $targetAmount, null, $refundAddress, $paymentMethodId, $blockchain, $walletAddressTag); // Dynamic
 >```
 >```php
->$banxa->createSellOrder(
->    $sellOrderTransaction,
->    $returnUrlOnSuccess,
->    $returnUrlOnFailure,
->    $returnUrlOnCancelled,
->    $metadata,
->    $readOnlyAmounts,
->    $iframeRefererDomain,
->);
+> $banxa->createSellOrder(
+>     $sellOrderTransaction,
+>     $returnUrlOnSuccess,
+>     $returnUrlOnFailure,
+>     $returnUrlOnCancelled,
+>     $metadata,
+>     $readOnlyAmounts,
+>     $iframeRefererDomain,
+> );
 >```
 >
 >**Result Example**
@@ -1377,11 +1377,11 @@ checkout
 > You can also find Testing information [here](https://docs.banxa.com/docs/order-flow)**
 >```php
 > $banxa->createIdentity(
->   $identitySharingCollection,
->   $customerDetails,
->   $customerIdentity,
->   $identityDocumentCollection,
->   $residentialAddress
+>    $identitySharingCollection,
+>    $customerDetails,
+>    $residentialAddress
+>    $customerIdentity,
+>    $identityDocumentCollection,
 > )
 >```
 
@@ -1389,9 +1389,9 @@ checkout
 |-------------------------------|----------|----------|-------------------------------------|
 | `$identitySharingCollection`  | `Object` | `true`   | `IdentitySharingCollection` object  |
 | `$customerDetails`            | `Object` | `true`   | `CustomerDetail` object             | 
+| `$residentialAddress`         | `Object` | `true`   | `ResidentialAddress` object         |
 | `$customerIdentity`           | `Object` | `true`   | `CustomerIdentity` object           |
 | `$identityDocumentCollection` | `Object` | `false`  | `IdentityDocumentCollection` object |
-| `$residentialAddress`         | `Object` | `false`  | `ResidentialAddress` object         |
 
 ##### IdentitySharingCollection
 
@@ -1409,10 +1409,53 @@ checkout
  IdentitySharingProvider::create($provider, $token)
  ```
 
-| Property    | type     | description                        |
-|-------------|----------|------------------------------------|
-| `$provider` | `string` | Name of the provider e.g. 'sumsub' |
-| `$token`    | `string` | The unique provider token          |
+| Property    | type     | required  | description                        |
+|-------------|----------|:----------|------------------------------------|
+| `$provider` | `string` | `true`    | Name of the provider e.g. 'sumsub' |
+| `$token`    | `string` | `true`    | The unique provider token          |
+
+##### CustomerDetail
+```php 
+$customerDetail = CustomerDetail::create($accountReference, $mobileNumber, $emailAddress);
+ ```
+| Property             | type      | required  | description                                                                                                                                  |
+|:---------------------|:----------|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference`  | `string`  | `true`    | Unique customer reference provided by you. This should be the same value that is passed when calling the calling the Create Order endpoint.  |
+| `$mobileNumber`      | `string`  | `true`    | Mobile number of customer                                                                                                                    |
+| `$emailAddress`      | `string`  | `true`    | Email address of customer                                                                                                                    |
+
+
+##### ResidentialAddress
+```php 
+$residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb, $postCode, $state);
+ ```
+| Property       | type     | required | description                                                                                                         |
+|:---------------|:---------|:---------|:--------------------------------------------------------------------------------------------------------------------|
+| `$country`     | `string` | `true`   | Customer's country of residence. Required to be formatted using ISO 3166 two-letter country code e.g. "US" or "AU". |
+| `$addressLine` | `string` | `false`  | Customer's Street number, street name and street type/suffix.                                                       |
+| `$suburb`      | `string` | `false`  | Customer's Address city or suburb. E.g. "2 Abbey Road".                                                             |
+| `$postCode`    | `string` | `false`  | Customer's Address postal / PIN / ZIP code.                                                                         |
+| `$state`       | `string` | `false`  | Customer's Address state / region.                                                                                  |
+
+
+##### CustomerIdentity
+```php 
+ $customerIdentity = CustomerIdentity::create($givenName, $surname, $dateOfBirth);
+ ```
+| Property       | type     | required | description                                                                                                       |
+|:---------------|:---------|:---------|:------------------------------------------------------------------------------------------------------------------|
+| `$givenName`   | `string` | `true`   | Customer's Customer's given / first name.                                                                         |
+| `$surname`     | `string` | `true`   | Customer's surname / last name.                                                                                   |
+| `$dateOfBirth` | `string` | `false`  | Customer's Customer's date of birth (e.g. "1985-01-31"). Required to format as ISO 8601 Date format : YYYY-MM-DD. |
+
+
+
+##### IdentityDocumentCollection
+
+| Property     | type    | description                                 |
+|--------------|---------|---------------------------------------------|
+| `$documents` | `array` | An Array holding `IdentityDocument` objects |
+
 
 ##### IdentityDocument
 
@@ -1434,6 +1477,8 @@ checkout
 | `IdentityDocument::DOCUMENT_TYPE_SELFIE`           |
 | `IdentityDocument::DOCUMENT_TYPE_PROOF_OF_ADDRESS` |
 
+
+
 #### Full Example
 
 ```php
@@ -1448,17 +1493,17 @@ $documents = [
 ];
 
 $identitySharingCollection = IdentitySharingCollection::create($kycProviders);
-$customerDetails = CustomerDetail::create($accountReference, $mobileNumber, $emailAddress);
+$customerDetail = CustomerDetail::create($accountReference, $mobileNumber, $emailAddress);
+$residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb, $postCode, $state);
 $customerIdentity = CustomerIdentity::create($givenName, $surname, $dateOfBirth);
 $identityDocumentCollection = IdentityDocumentCollection::create($documents);
-$residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb, $postCode, $state);
 
 $banxa->createIdentity(
     $identitySharingCollection,
-    $customerDetails,
+    $customerDetail,
+    $residentialAddress,
     $customerIdentity,
-    $identityDocumentCollection,
-    $residentialAddress
+    $identityDocumentCollection
 );
 ```
 

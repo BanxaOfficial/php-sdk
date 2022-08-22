@@ -344,25 +344,25 @@ class Banxa
     /**
      * @param IdentitySharingCollection $identitySharingCollection
      * @param CustomerDetail $customerDetails
+     * @param ResidentialAddress $residentialAddress
      * @param CustomerIdentity $customerIdentity
      * @param IdentityDocumentCollection|null $identityDocumentCollection
-     * @param ResidentialAddress|null $residentialAddress
      * @return array
      * @throws JsonException
      */
     public function createIdentity(
         IdentitySharingCollection $identitySharingCollection,
         CustomerDetail $customerDetails,
+        ResidentialAddress $residentialAddress,
         CustomerIdentity $customerIdentity,
         IdentityDocumentCollection|null $identityDocumentCollection = null,
-        ResidentialAddress|null $residentialAddress = null
     ): array {
         return (new CreateIdentity($this->httpClient))->create(
             $identitySharingCollection,
             $customerDetails,
+            $residentialAddress,
             $customerIdentity,
             $identityDocumentCollection,
-            $residentialAddress
         );
     }
 

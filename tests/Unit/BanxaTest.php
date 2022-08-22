@@ -441,6 +441,7 @@ class BanxaTest extends BaseTestCase
                     IdentitySharingProvider::create('sumsub', 'bar')
                 ]),
                 CustomerDetail::create('test00100122', '61431000022', 'test@bitcoin.com'),
+                ResidentialAddress::create('FO', '21 FooBarBaz FizBuz', 'Foobaz', '3000 VIC', 'BAZ'),
                 CustomerIdentity::create('FooBarBaz', 'FizBuz', '2001-01-01'),
                 IdentityDocumentCollection::create([
                     IdentityDocument::create(
@@ -448,8 +449,7 @@ class BanxaTest extends BaseTestCase
                         ['https://www.orimi.com/pdf-test.pdf'],
                         'BTCBaz007'
                     )
-                ]),
-                ResidentialAddress::create('FO', '21 FooBarBaz FizBuz', 'Foobaz', '3000 VIC', 'BAZ')
+                ])
             )
         );
     }
@@ -470,6 +470,7 @@ class BanxaTest extends BaseTestCase
                     IdentitySharingProvider::create('sumsub', 'bar')
                 ]),
                 CustomerDetail::create('test00100122', '61431000022', 'test@bitcoin.com'),
+                ResidentialAddress::create('AU'),
                 CustomerIdentity::create('FooBarBaz', 'FizBuz', '2001-01-01')
             )
         );
