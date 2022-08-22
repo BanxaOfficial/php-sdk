@@ -28,6 +28,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer install --no-interaction --no-update
+          composer install --no-interaction
       - name: Execute tests
         run: vendor/bin/phpunit
