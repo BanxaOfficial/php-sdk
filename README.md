@@ -1,4 +1,4 @@
-![Banxa](https://banxa.com/wp-content/uploads/2022/02/logo-white.png)
+![Banxa](https://banxa.com/wp-content/uploads/2022/02/image-16.png)
 
 ## Banxa official PHP SDK
 
