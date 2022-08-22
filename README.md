@@ -1467,22 +1467,3 @@ $banxa->createIdentity(
     "account_reference" => "test001001"
 ]
 ```
-
-### TEMPLATE FOR NEW DESCRIPTION
-
-> **Simple description**
->```php
-> $banxa->method($param)
->```
-
-| Property | description | required | description          |
-|:---------|:------------|:---------|:---------------------|
-| `foo`    | `string`    | `true`   | Description of param |
-
-**Result Example**
-
-```php
-[
- TEMPLATE
-]
-```
