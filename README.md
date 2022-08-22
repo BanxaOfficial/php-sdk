@@ -529,13 +529,13 @@ combination. Should be called when a user requests prices by providing the crypt
 > )
 >```
 
-| Property             | type               | required | required                                                                                                                                      |
-|:---------------------|:-------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$fiatCode`          | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR see [Fiat](#fiat) to get a list all available fiats                                                              |
-| `$coinCode`          | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH see [Crypto](#crypto) to get a list all available crypto                                                         |
-| `$fiatAmount`        | `string/int/float` | `true`   | Fiat amount                                                                                                                                   |
-| `$payment_method_id` | `string/int/float` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`        | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin.                                  |
+| Property           | type               | required | required                                                                                                                                      |
+|:-------------------|:-------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$fiatCode`        | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR see [Fiat](#fiat) to get a list all available fiats                                                              |
+| `$coinCode`        | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH see [Crypto](#crypto) to get a list all available crypto                                                         |
+| `$fiatAmount`      | `string/int/float` | `true`   | Fiat amount                                                                                                                                   |
+| `$paymentMethodId` | `string/int/float` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`      | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin.                                  |
 
 **Result Example**
 
@@ -617,12 +617,12 @@ combination. Should be called when a user requests prices by providing the crypt
 > )
 >```
 
-| Property             | type               | required | description                                                                                                                                   |
-|:---------------------|:-------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$coinCode`          | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
-| `$fiatCode`          | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
-| `$coinAmount`        | `string/int/float` | `true`   | Crypto amount that will be used to calculate                                                                                                  |
-| `$payment_method_id` | `string/int`       | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| Property           | type               | required | description                                                                                                                                   |
+|:-------------------|:-------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$coinCode`        | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `$fiatCode`        | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$coinAmount`      | `string/int/float` | `true`   | Crypto amount that will be used to calculate                                                                                                  |
+| `$paymentMethodId` | `string/int`       | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
 
 **Result Example**
 
