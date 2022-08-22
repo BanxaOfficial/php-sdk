@@ -65,10 +65,14 @@ final class HttpException extends RuntimeException implements Throwable
     private static function parseAsStringMessage(ResponseInterface $response): string
     {
         $contents = $response->getBody()->getContents();
-        $decoded = json_decode($contents, true);
+        try {
+            $decoded = json_decode($contents, true);
         return array_key_exists('errors', $decoded) && array_key_exists('detail', $decoded['errors'])
             ? implode(', ', array_values($decoded['errors']['detail']))
             : $contents;
+        }catch (Throwable $e){
+            throw new HttpException('Invalid data provided, message:'. $contents, 422);
+        }
     }
 
     /**
@@ -77,10 +81,14 @@ final class HttpException extends RuntimeException implements Throwable
      */
     protected static function getErrorTitle(ResponseInterface $response): string
     {
-        $contents = $response->getBody()->getContents();
-        $decoded = json_decode($contents, true);
-        return array_key_exists('errors', $decoded)
-            ? $decoded['errors']['title'] . ' (Code: ' . $decoded['errors']['code'] . ')'
-            : $contents;
+        try {
+            $contents = $response->getBody()->getContents();
+            $decoded = json_decode($contents, true);
+            return array_key_exists('errors', $decoded)
+                ? $decoded['errors']['title'] . ' (Code: ' . $decoded['errors']['code'] . ')'
+                : $contents;
+        }catch (Throwable $e){
+            throw new HttpException('An unexpected error occurred', 500);
+        }
     }
 }
