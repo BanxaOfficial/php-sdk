@@ -584,7 +584,7 @@ combination. Should be called when a user requests prices by providing the crypt
             "spot_price_including_fee" => "32500.00",
             "coin_amount" => "0.02000000",
             "coin_code" => "BTC",
-            "fiat_amount" => "BTC.00",
+            "fiat_amount" => "100.00",
             "fiat_code" => "AUD",
             "fee_amount" => "0.00",
             "network_fee" => "0.00"
@@ -594,7 +594,7 @@ combination. Should be called when a user requests prices by providing the crypt
             "type" => "CRYPTO_TO_FIAT",
             "spot_price_fee" => "0.00",
             "spot_price_including_fee" => "32500.00",
-            "coin_amount" => "0.02000000",
+            "coin_amount" => "0.04000000",
             "coin_code" => "BTC",
             "fiat_amount" => "650.00",
             "fiat_code" => "AUD",
