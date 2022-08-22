@@ -17,17 +17,17 @@ class CreateIdentity extends Domain
     /**
      * @param IdentitySharingCollection $identitySharingCollection
      * @param CustomerDetail $customerDetails
+     * @param ResidentialAddress $residentialAddress
      * @param CustomerIdentity $customerIdentity
      * @param IdentityDocumentCollection|null $identityDocumentCollection
-     * @param ResidentialAddress|null $residentialAddress
      * @return array
      */
     protected function buildPayload(
         IdentitySharingCollection $identitySharingCollection,
         CustomerDetail $customerDetails,
+        ResidentialAddress $residentialAddress,
         CustomerIdentity $customerIdentity,
         IdentityDocumentCollection|null $identityDocumentCollection,
-        ResidentialAddress|null $residentialAddress,
     ): array {
         $payload = [
             KeyConstants::_ACCOUNT_REFERENCE => $customerDetails->getAccountReference(),
@@ -36,10 +36,9 @@ class CreateIdentity extends Domain
             KeyConstants::_CUSTOMER_IDENTITY => $customerIdentity->toArray(),
             KeyConstants::_IDENTITY_SHARING  => $identitySharingCollection->all()
         ];
-        if ($residentialAddress instanceof ResidentialAddress) {
-            $payload[KeyConstants::_CUSTOMER_IDENTITY][KeyConstants::_RESIDENTIAL_ADDRESS] = $residentialAddress->toArray(
-            );
-        }
+
+        $payload[KeyConstants::_CUSTOMER_IDENTITY][KeyConstants::_RESIDENTIAL_ADDRESS] = $residentialAddress->toArray();
+
         if ($identityDocumentCollection instanceof IdentityDocumentCollection) {
             $payload[KeyConstants::_IDENTITY_DOCUMENTS] = $identityDocumentCollection->all();
         }

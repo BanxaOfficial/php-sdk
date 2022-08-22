@@ -1,11 +1,9 @@
 ![Banxa](https://banxa.com/wp-content/uploads/2022/02/image-16.png)
 
 
-
 ## Banxa official PHP SDK
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/banxa-global/php-sdk/run-tests?label=tests)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/banxa/php-sdk.svg?style=flat-square)](https://packagist.org/packages/banxa/php-sdk)
-[![Total Downloads](https://img.shields.io/packagist/dt/banxa/php-sdk.svg?style=flat-square)](https://packagist.org/packages/banxa/php-sdk)
 
 ## Table of Contents
 
@@ -263,7 +261,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
         "paymentType"      => "WORLDPAYCREDIT",
         "name"             => "Visa/Mastercard",
         "description"      => "Conveniently buy digital currency using your personal VISA or MasterCard.",
-        "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/worldpaycredit.png",
+        "logo_url"         => "https://partner.banxa.com/images/payment-providers/worlpaycredit.png",
         "status"           => "ACTIVE",
         "supported_agents" => [
             [
@@ -302,7 +300,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
         "paymentType"      => "WORLDPAYAPPLE",
         "name"             => "Apple Pay",
         "description"      => "Conveniently buy digital currency using your Apple Pay wallet.",
-        "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/apple-pay.png",
+        "logo_url"         => "https://partner.banxa.com/images/payment-providers/apple-pay.png",
         "status"           => "ACTIVE",
         "supported_agents" => [
             [
@@ -359,64 +357,7 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
     "paymentType"      => "WORLDPAYAPPLE",
     "name"             => "Apple Pay",
     "description"      => "Conveniently buy digital currency using your Apple Pay wallet.",
-    "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/apple-pay.png",
-    "status"           => "ACTIVE",
-    "supported_agents" => [
-        [
-            "os"      => "ios",
-            "browser" => "safari"
-        ],
-        [
-            "os"      => "macos",
-            "browser" => "safari"
-        ],
-        [
-            "os"      => "ipados",
-            "browser" => "safari"
-        ]
-    ],
-    "type"             => "CRYPTO_TO_FIAT",
-    "supported_fiat"   => [
-        "AED",
-    ],
-    "transaction_fees" => [
-        [
-            "fiat_code" => "AED",
-            "coin_code" => "BTC",
-            "fees"      => [
-                [
-                    "name"   => "surcharge",
-                    "amount" => 3,
-                    "type"   => "fixed"
-                ]
-            ]
-        ],
-    ]
-]
-
- ```
-
-### Sell order type payment methods
-
-> **Fetch all available payment methods for sell order type**
->```php
-> $banxa->getSellPaymentMethods($coinCode, $fiatCode)
->```
-
-| Property    | type     | required | description                                                                           |
-|-------------|----------|----------|---------------------------------------------------------------------------------------|
-| `$coinCode` | `string` | `true`   | Coin code e.g. 'BTC' or 'ETH see [Crypto](#crypto) to get a list all available crypto |
-| `$fiatCode` | `string` | `true`   | Fiat code e.g. 'USD' or 'EUR see [Fiat](#fiat) to get a list all available fiats      |
-
-**Result Example**
-
- ```php
-[
-    "id"               => 6036,
-    "paymentType"      => "WORLDPAYCREDIT",
-    "name"             => "Visa/Mastercard",
-    "description"      => "Conveniently buy digital currency using your personal VISA or MasterCard.",
-    "logo_url"         => "https://cremorne.1cart.test/images/payment-providers/worldpaycredit.png",
+    "logo_url"         => "https://partner.banxa.com/images/payment-providers/apple-pay.png",
     "status"           => "ACTIVE",
     "supported_agents" => [
         [
@@ -450,26 +391,80 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
         ],
     ]
 ]
+
+ ```
+
+### Sell order type payment methods
+
+> **Fetch all available payment methods for sell order type**
+>```php
+> $banxa->getSellPaymentMethods($coinCode, $fiatCode)
+>```
+
+| Property    | type     | required | description                                                                              |
+|-------------|----------|----------|------------------------------------------------------------------------------------------|
+| `$coinCode` | `string` | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto   |
+| `$fiatCode` | `string` | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats        |
+
+**Result Example**
+
+ ```php
+[
+    "id"               => 6036,
+    "paymentType"      => "DIRECTCREDIT",
+    "name"             => "Bank Transfer",
+    "description"      => "Sell digital currency to us and have the value directly credited to your bank account",
+    "logo_url"         => "https://partner.banxa.com/images/payment-providers/directcredit.png",
+    "status"           => "ACTIVE",
+    "supported_agents" => [
+        [
+            "os"      => "ios",
+            "browser" => "safari"
+        ],
+        [
+            "os"      => "macos",
+            "browser" => "safari"
+        ],
+        [
+            "os"      => "ipados",
+            "browser" => "safari"
+        ]
+    ],
+    "type"             => "CRYPTO_TO_FIAT",
+    "supported_fiat"   => [
+        "AED",
+    ],
+    "transaction_fees" => [
+        [
+            "fiat_code" => "AED",
+            "coin_code" => "BTC",
+            "fees"      => [
+                [
+                    "name"   => "surcharge",
+                    "amount" => 3,
+                    "type"   => "fixed"
+                ]
+            ]
+        ],
+    ]
+]
 ```
 
 --- 
 
 # Prices
 
-Get prices for [Payment Methods](#payment-methods) to obtain a payment method id for each specific fiat and coin
-combination. Should be called when a user requests prices by providing the cryptocurrency, fiat, and fiat amount.
-
-(Rate limited)
+Get prices for [Payment Methods](#payment-methods) to obtain a payment method id for each specific fiat.
 
 ### Buy order types pricing
 
-> **Fetch single available price for buy order type for a specific payment method**
+> **Fetch all available prices for buy order type**
 >```php
 > $banxa->getAllBuyPrices(
->   $fiatCode,
->   $coinCode,
->   $fiatAmount,
->   $blockchain
+>     $fiatCode,
+>     $coinCode,
+>     $fiatAmount,
+>     $blockchain
 > )
 >```
 
@@ -521,20 +516,20 @@ combination. Should be called when a user requests prices by providing the crypt
 > **Fetch single price for buy order type for a specific payment method**
 > ```php
 > $banxa->getBuyPrice(
->    $fiatCode,
->    $coinCode,
->    $fiatAmount,
->    $paymentMethodId,
->    $blockchain
+>     $fiatCode,
+>     $coinCode,
+>     $fiatAmount,
+>     $paymentMethodId,
+>     $blockchain
 > )
 >```
 
 | Property           | type               | required | required                                                                                                                                      |
 |:-------------------|:-------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$fiatCode`        | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR see [Fiat](#fiat) to get a list all available fiats                                                              |
-| `$coinCode`        | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH see [Crypto](#crypto) to get a list all available crypto                                                         |
+| `$fiatCode`        | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$coinCode`        | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
 | `$fiatAmount`      | `string/int/float` | `true`   | Fiat amount                                                                                                                                   |
-| `$paymentMethodId` | `string/int/float` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$paymentMethodId` | `string/int`       | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
 | `$blockchain`      | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin.                                  |
 
 **Result Example**
@@ -834,15 +829,15 @@ specify your own amount using the createDynamic method, this will depend on your
 > );
 >```
 
-| Property                | type          | required | description                                                                                                                                                                 |
-|-------------------------|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$buyOrderTransaction`  | `Object`      | `true`   | `BuyOrderTransaction` object                                                                                                                                                |
-| `$returnUrlOnSuccess`   | `string`      | `true`   | The return url on success                                                                                                                                                   | 
-| `$returnUrlOnFailure`   | `string/null` | `false`  | The return url on failure                                                                                                                                                   | 
-| `$returnUrlOnCancelled` | `string/null` | `false`  | The return url on cancelled                                                                                                                                                 | 
-| `$metadata`             | `string/null` | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
-| `$readOnlyAmounts`      | `boolean`     | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
-| `$iframeRefererDomain`  | `string/null` | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
+| Property                | type      | required | description                                                                                                                                                                 |
+|-------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$buyOrderTransaction`  | `Object`  | `true`   | `BuyOrderTransaction` object                                                                                                                                                |
+| `$returnUrlOnSuccess`   | `string`  | `true`   | The return url on success                                                                                                                                                   | 
+| `$returnUrlOnFailure`   | `string`  | `false`  | The return url on failure                                                                                                                                                   | 
+| `$returnUrlOnCancelled` | `string`  | `false`  | The return url on cancelled                                                                                                                                                 | 
+| `$metadata`             | `string`  | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
+| `$readOnlyAmounts`      | `boolean` | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
+| `$iframeRefererDomain`  | `string`  | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
 
 ---
 
@@ -858,16 +853,16 @@ specify your own amount using the createDynamic method, this will depend on your
 >   );
 >```
 
-| Property            | type              | required | description                                                                                                                                   |
-|---------------------|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$accountReference` | `string`          | `true`   | The customer's unique ID                                                                                                                      |
-| `$fiatCode`         | `string`          | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
-| `$coinCode`         | `string`          | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
-| `$fiatAmount`       | `string/float`    | `true`   | Fiat amount                                                                                                                                   |
-| `$walletAddress`    | `string`          | `true`   | The target wallet address to transfer the coin to                                                                                             |
-| `$paymentMethodId`  | `int/string/null` | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string/null`     | `false`  | Blockchain code, the list of available blockchains per coin @see [Crypto](#crypto) for all available blockchains per coin                     |
-| `$walletAddressTag` | `string/null`     | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
+| Property            | type           | required | description                                                                                                                                   |
+|---------------------|----------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference` | `string`       | `true`   | The customer's unique ID                                                                                                                      |
+| `$fiatCode`         | `string`       | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$coinCode`         | `string`       | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `$fiatAmount`       | `string/float` | `true`   | Fiat amount                                                                                                                                   |
+| `$walletAddress`    | `string`       | `true`   | The target wallet address to transfer the coin to                                                                                             |
+| `$paymentMethodId`  | `int/string`   | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`       | `string`       | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$walletAddressTag` | `string`       | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 ---
 
@@ -880,20 +875,20 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $coinAmount, 
 >       $walletAddress, 
 >       $paymentMethodId
->   );
+>  );
 >```
 >
 
-| Property            | type               | required | description                                                                                                                                   |
-|---------------------|--------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$accountReference` | `string`           | `true`   | The customer's unique ID                                                                                                                      |
-| `$fiatCode`         | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
-| `$coinCode`         | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
-| `$coinAmount`       | `string/float`     | `true`   | The coin amount                                                                                                                               |
-| `$walletAddress`    | `string`           | `true`   | The target wallet address to transfer the coin to                                                                                             |
-| `$paymentMethodId`  | `int/string/null`  | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string/null`      | `false`  | Blockchain code, the list of available blockchains per coin @see [Crypto](#crypto) for all available blockchains per coin                     |
-| `$walletAddressTag` | `string/null`      | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
+| Property            | type           | required | description                                                                                                                                   |
+|---------------------|----------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference` | `string`       | `true`   | The customer's unique ID                                                                                                                      |
+| `$fiatCode`         | `string`       | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$coinCode`         | `string`       | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `$coinAmount`       | `string/float` | `true`   | The coin amount                                                                                                                               |
+| `$walletAddress`    | `string`       | `true`   | The target wallet address to transfer the coin to                                                                                             |
+| `$paymentMethodId`  | `int/string`   | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`       | `string`       | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$walletAddressTag` | `string`       | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 ---
 > **BuyOrderTransaction using dynamic sourceAmount or targetAmount**
@@ -915,18 +910,18 @@ specify your own amount using the createDynamic method, this will depend on your
 >   );
 >```
 
-| Property            | type                 | required | description                                                                                                                                   |
-|---------------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$accountReference` | `string`             | `true`   | The customer's unique ID                                                                                                                      |
-| `$source`           | `string`             | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
-| `$target`           | `string`             | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
-| `$sourceAmount`     | `string/float/null`  | `true`   | Source amount - null if targetAmount is set                                                                                                   |
-| `$targetAmount`     | `string/float/null`  | `true`   | Target amount - null if sourceAmount is set                                                                                                   |
-| `$walletAddress`    | `string/null`        | `true`   | The target wallet address to transfer the coin to - For Buy orders only                                                                       |
-| `$refundAddress`    | `string/null`        | `true`   | The refund wallet address - For sell orders only                                                                                              |
-| `$paymentMethodId`  | `int/string/null`    | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string/null`        | `false`  | Blockchain code, the list of available blockchains per coin @see [Crypto](#crypto) for all available blockchains per coin                     |
-| `$walletAddressTag` | `string/null`        | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
+| Property            | type                | required | description                                                                                                                                   |
+|---------------------|---------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference` | `string`            | `true`   | The customer's unique ID                                                                                                                      |
+| `$source`           | `string`            | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$target`           | `string`            | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `$sourceAmount`     | `string/float/null` | `true`   | Source amount - null if targetAmount is set                                                                                                   |
+| `$targetAmount`     | `string/float/null` | `true`   | Target amount - null if sourceAmount is set                                                                                                   |
+| `$walletAddress`    | `string/null`       | `true`   | The target wallet address to transfer the coin to - For Buy orders only                                                                       |
+| `$refundAddress`    | `string/null`       | `true`   | The refund wallet address - For sell orders only                                                                                              |
+| `$paymentMethodId`  | `int/string`        | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`       | `string`            | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$walletAddressTag` | `string`            | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 > **Buy order full example**
 >
@@ -943,7 +938,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >$buyOrderTransaction = BuyOrderTransaction::createDynamic($accountReference, $source, $target, null, $targetAmount, $walletAddress, null, $paymentMethodId, $blockchain, $walletAddressTag); // Dynamic
 >```
 >```php
->$banxa->createBuyOrder(
+> $banxa->createBuyOrder(
 >     $buyOrderTransaction,
 >     $returnUrlOnSuccess,
 >     $returnUrlOnFailure,
@@ -951,7 +946,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >     $metadata,
 >     $readOnlyAmounts,
 >     $iframeRefererDomain,
->     );
+> );
 >```
 >
 >
@@ -982,60 +977,61 @@ specify your own amount using the createDynamic method, this will depend on your
 
 > ```php
 > $banxa->createNftBuyOrder(
->   $nftBuyOrderTransaction,
->   $nftData,
->   $returnUrlOnSuccess,
->   $returnUrlOnFailure,
->   $returnUrlOnCancelled,
->   $iframeRefererDomain
+>     $nftBuyOrderTransaction,
+>     $nftData,
+>     $returnUrlOnSuccess,
+>     $returnUrlOnFailure,
+>     $returnUrlOnCancelled,
+>     $iframeRefererDomain
 > );
 >```
 
-| Property                  | type          | required | description                                                                                                                                                                 |
-|---------------------------|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$nftBuyOrderTransaction` | `Object`      | `true`   | `NftBuyOrderTransaction` object                                                                                                                                             |
-| `$nftData`                | `Object`      | `true`   | `NftData` object                                                                                                                                                            |
-| `$returnUrlOnSuccess`     | `string`      | `true`   | The return url on success                                                                                                                                                   | 
-| `$returnUrlOnFailure`     | `string/null` | `false`  | The return url on failure                                                                                                                                                   | 
-| `$returnUrlOnCancelled`   | `string/null` | `false`  | The return url on cancelled                                                                                                                                                 | 
-| `$iframeRefererDomain`    | `string/null` | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
+| Property                  | type     | required | description                                                                                                                                                                 |
+|---------------------------|----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$nftBuyOrderTransaction` | `Object` | `true`   | `NftBuyOrderTransaction` object                                                                                                                                             |
+| `$nftData`                | `Object` | `true`   | `NftData` object                                                                                                                                                            |
+| `$returnUrlOnSuccess`     | `string` | `true`   | The return url on success                                                                                                                                                   | 
+| `$returnUrlOnFailure`     | `string` | `false`  | The return url on failure                                                                                                                                                   | 
+| `$returnUrlOnCancelled`   | `string` | `false`  | The return url on cancelled                                                                                                                                                 | 
+| `$iframeRefererDomain`    | `string` | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
 
 ---
 
 > **NftBuyOrderTransaction**
 >```php
 > $nftBuyOrderTransaction = NftBuyOrderTransaction::create(
->        $accountReference,
->        $fiatCode,
->        $coinCode,
->        $fiatAmount,
->        $walletAddress,
->        $paymentMethodId = null,
->        $blockchain = null,
->        $walletAddressTag = null
->   );
+>     $accountReference,
+>     $fiatCode,
+>     $coinCode,
+>     $fiatAmount,
+>     $walletAddress,
+>     $paymentMethodId = null,
+>     $blockchain = null,
+>     $walletAddressTag = null
+> );
 >```
 
-| Property            | type              | required | description                                                                                                                                   |
-|---------------------|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$accountReference` | `string`          | `true`   | The customer's unique ID                                                                                                                      |
-| `$fiatCode`         | `string`          | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
-| `$coinCode`         | `string`          | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
-| `$fiatAmount`       | `string/float`    | `true`   | Fiat amount                                                                                                                                   |
-| `$walletAddress`    | `string`          | `true`   | The target wallet address to transfer the coin to                                                                                             |
-| `$paymentMethodId`  | `int/string/null` | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string/null`     | `false`  | Blockchain code, the list of available blockchains per coin @see [Crypto](#crypto) for all available blockchains per coin                     |
-| `$walletAddressTag` | `string/null`     | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
+| Property            | type           | required | description                                                                                                                                   |
+|---------------------|----------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference` | `string`       | `true`   | The customer's unique ID                                                                                                                      |
+| `$fiatCode`         | `string`       | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$coinCode`         | `string`       | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `$fiatAmount`       | `string/float` | `true`   | Fiat amount                                                                                                                                   |
+| `$walletAddress`    | `string`       | `true`   | The target wallet address to transfer the coin to                                                                                             |
+| `$paymentMethodId`  | `int/string`   | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`       | `string`       | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$blockchain`       | `string`       | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$walletAddressTag` | `string`       | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 ---
 
 > **NftData**
 >```php
->  $nftData = NftData::create(
->       $purchaseReference, 
->       $nft, 
->       $metaData
->   );
+> $nftData = NftData::create(
+>     $purchaseReference, 
+>     $nft, 
+>     $metaData
+> );
 >```
 
 | Property             | type     | required | description                 |
@@ -1048,11 +1044,11 @@ specify your own amount using the createDynamic method, this will depend on your
 > **Nft**
 >
 >```php
->   $nft = Nft::create(
->       $name, 
->       $collection, 
->       $nftMedia,
->   );
+> $nft = Nft::create(
+>     $name, 
+>     $collection, 
+>     $nftMedia,
+> );
 >```
 
 | Property      | type           | required | description              |
@@ -1083,7 +1079,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >
 >```php
 >
->$nftBuyOrderTransaction = NftBuyOrderTransaction::create(
+> $nftBuyOrderTransaction = NftBuyOrderTransaction::create(
 >      $accountReference, 
 >      $fiatCode, 
 >      $coinCode, 
@@ -1092,32 +1088,32 @@ specify your own amount using the createDynamic method, this will depend on your
 >      $paymentMethodId, 
 >      $blockchain, 
 >      $walletAddressTag
->   );
+> );
 >
 >
->   $nftMedia = ImageNftMedia::create($link); // OR $nftMedia = VideoNftMedia::create($link)
+> $nftMedia = ImageNftMedia::create($link); // OR $nftMedia = VideoNftMedia::create($link)
 >
 >
->   $nft = Nft::create(
->       $name, 
->       $collection, 
->       $nftMedia,
->   );
+> $nft = Nft::create(
+>     $name, 
+>     $collection, 
+>     $nftMedia,
+> );
 >
->  $nftData = NftData::create(
->       $purchaseReference, 
->       $nft, 
->       $metaData
->   );
+> $nftData = NftData::create(
+>     $purchaseReference, 
+>     $nft, 
+>     $metaData
+> );
 >
->   $banxa->createNftBuyOrder(
->       $nftBuyOrderTransaction,
->       $nftData,
->       $returnUrlOnSuccess,
->       $returnUrlOnFailure,
->       $returnUrlOnCancelled,
->       $iframeRefererDomain,
->     );
+> $banxa->createNftBuyOrder(
+>     $nftBuyOrderTransaction,
+>     $nftData,
+>     $returnUrlOnSuccess,
+>     $returnUrlOnFailure,
+>     $returnUrlOnCancelled,
+>     $iframeRefererDomain,
+> );
 >```
 >
 >
@@ -1144,25 +1140,25 @@ specify your own amount using the createDynamic method, this will depend on your
 
 > ```php
 > $banxa->createSellOrder(
->   $sellOrderTransaction,
->   $returnUrlOnSuccess,
->   $returnUrlOnFailure,
->   $returnUrlOnCancelled,
->   $metadata,
->   $readOnlyAmounts,
->   $iframeRefererDomain,
+>    $sellOrderTransaction,
+>    $returnUrlOnSuccess,
+>    $returnUrlOnFailure,
+>    $returnUrlOnCancelled,
+>    $metadata,
+>    $readOnlyAmounts,
+>    $iframeRefererDomain,
 > )
 >```
 
-| Property                  | type          | required | description                                                                                                                                                                 |
-|---------------------------|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$sellOrderTransaction`   | `Object`      | `true`   | `SellOrdertransaction` object                                                                                                                                               |
-| `$returnUrlOnSuccess`     | `string`      | `true`   | The return url on success                                                                                                                                                   | 
-| `$returnUrlOnFailure`     | `string/null` | `false`  | The return url on failure                                                                                                                                                   | 
-| `$returnUrlOnCancelled`   | `string/null` | `false`  | The return url on cancelled                                                                                                                                                 | 
-| `$metadata`               | `string/null` | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
-| `$readOnlyAmounts`        | `boolean`     | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
-| `$iframeRefererDomain`    | `string/null` | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
+| Property                | type      | required | description                                                                                                                                                                 |
+|-------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$sellOrderTransaction` | `Object`  | `true`   | `SellOrdertransaction` object                                                                                                                                               |
+| `$returnUrlOnSuccess`   | `string`  | `true`   | The return url on success                                                                                                                                                   | 
+| `$returnUrlOnFailure`   | `string`  | `false`  | The return url on failure                                                                                                                                                   | 
+| `$returnUrlOnCancelled` | `string`  | `false`  | The return url on cancelled                                                                                                                                                 | 
+| `$metadata`             | `string`  | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
+| `$readOnlyAmounts`      | `boolean` | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
+| `$iframeRefererDomain`  | `string`  | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
 
 ---
 
@@ -1177,19 +1173,19 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $paymentMethodId,
 >       $blockchain,
 >       $walletAddressTag,
->);
+> );
 >```
 
-| Property            | type              | required | description                                                                                                                                   |
-|---------------------|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$accountReference` | `string`          | `true`   | The customer's unique ID                                                                                                                      |
-| `$fiatCode`         | `string`          | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
-| `$coinCode`         | `string`          | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
-| `$fiatAmount`       | `string/float`    | `true`   | Fiat amount                                                                                                                                   |
-| `$refundAddress`    | `string`          | `true`   | The refund wallet address if the order gets rejected                                                                                          |
-| `$paymentMethodId`  | `int/string/null` | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string/null`     | `false`  | Blockchain code, the list of available blockchains per coin @see [Crypto](#crypto) for all available blockchains per coin                     |
-| `$walletAddressTag` | `string/null`     | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
+| Property            | type           | required | description                                                                                                                                   |
+|---------------------|----------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference` | `string`       | `true`   | The customer's unique ID                                                                                                                      |
+| `$fiatCode`         | `string`       | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$coinCode`         | `string`       | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `$fiatAmount`       | `string/float` | `true`   | Fiat amount                                                                                                                                   |
+| `$refundAddress`    | `string`       | `true`   | The refund wallet address if the order gets rejected                                                                                          |
+| `$paymentMethodId`  | `int/string`   | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`       | `string`       | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$walletAddressTag` | `string`       | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 ---
 
@@ -1205,26 +1201,26 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $paymentMethodId,
 >       $blockchain,
 >       $walletAddressTag,
->   );
+>  );
 >```
 
-| Property            | type              | required | description                                                                                                                                   |
-|---------------------|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| `$accountReference` | `string`          | `true`   | The customer's unique ID                                                                                                                      |
-| `$fiatCode`         | `string`          | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
-| `$coinCode`         | `string`          | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
-| `$coinAmount`       | `string/float`    | `true`   | The coin amount                                                                                                                               |
-| `$refundAddress`    | `string`          | `true`   | The refund wallet address if the order gets rejected                                                                                          |
-| `$paymentMethodId`  | `int/string/null` | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string/null`     | `false`  | Blockchain code, the list of available blockchains per coin @see [Crypto](#crypto) for all available blockchains per coin                     |
-| `$walletAddressTag` | `string/null`     | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
+| Property            | type           | required | description                                                                                                                                   |
+|---------------------|----------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference` | `string`       | `true`   | The customer's unique ID                                                                                                                      |
+| `$fiatCode`         | `string`       | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `$coinCode`         | `string`       | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `$coinAmount`       | `string/float` | `true`   | The coin amount                                                                                                                               |
+| `$refundAddress`    | `string`       | `true`   | The refund wallet address if the order gets rejected                                                                                          |
+| `$paymentMethodId`  | `int/string`   | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`       | `string`       | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$walletAddressTag` | `string`       | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 ---
 
 
 > **sellOrderTransaction using dynamic sourceAmount or targetAmount**
 >
-> When using SellOrderTransaction::createDynamic you will need to specify `$source`(Fiat), `$target`(Coin), and
+> When using SellOrderTransaction::createDynamic you will need to specify `$source`(Coin), `$target`(Fiat), and
 > either `$sourceAmount` or `$targetAmount`
 >```php
 > $sellOrderTransaction = SellOrderTransaction::createDynamic(
@@ -1238,7 +1234,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >       $paymentMethodId, 
 >       $blockchain, 
 >       $walletAddressTag
->   );
+>  );
 >```
 
 | Property            | type                | required | description                                                                                                                                   |
@@ -1250,9 +1246,9 @@ specify your own amount using the createDynamic method, this will depend on your
 | `$targetAmount`     | `string/float/null` | `true`   | Target amount - null if sourceAmount is set                                                                                                   |
 | `$walletAddress`    | `string/null`       | `true`   | The target wallet address to transfer the coin to - For Buy orders only                                                                       |
 | `$refundAddress`    | `string/null`       | `true`   | The refund wallet address - For sell orders only                                                                                              |
-| `$paymentMethodId`  | `int/string/null`   | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
-| `$blockchain`       | `string/null`       | `false`  | Blockchain code, the list of available blockchains per coin @see [Crypto](#crypto) for all available blockchains per coin                     |
-| `$walletAddressTag` | `string/null`       | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
+| `$paymentMethodId`  | `int/string`        | `false`  | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `$blockchain`       | `string`            | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
+| `$walletAddressTag` | `string`            | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
 > **Sell order full example**
 >
@@ -1269,15 +1265,15 @@ specify your own amount using the createDynamic method, this will depend on your
 >$sellOrderTransaction = SellOrderTransaction::createDynamic($accountReference, $source, $target, null, $targetAmount, null, $refundAddress, $paymentMethodId, $blockchain, $walletAddressTag); // Dynamic
 >```
 >```php
->$banxa->createSellOrder(
->    $sellOrderTransaction,
->    $returnUrlOnSuccess,
->    $returnUrlOnFailure,
->    $returnUrlOnCancelled,
->    $metadata,
->    $readOnlyAmounts,
->    $iframeRefererDomain,
->);
+> $banxa->createSellOrder(
+>     $sellOrderTransaction,
+>     $returnUrlOnSuccess,
+>     $returnUrlOnFailure,
+>     $returnUrlOnCancelled,
+>     $metadata,
+>     $readOnlyAmounts,
+>     $iframeRefererDomain,
+> );
 >```
 >
 >**Result Example**
@@ -1320,14 +1316,14 @@ address details.**
 > )
 >```
 
-| Property                 | type          | required | description                                                                                         |
-|--------------------------|---------------|:---------|:----------------------------------------------------------------------------------------------------|
-| `$orderId`               | `string`      | `true`   | Unique ID for the the order                                                                         |
-| `$txHash`                | `string`      | `true`   | Blockchain transaction hash of the order                                                            |
-| `$sourceAddress`         | `string`      | `true`   | The provided customer's source wallet address                                                       |
-| `$destinationAddress`    | `string`      | `true`   | The wallet address provided to merchants to transact to                                             |
-| `$sourceAddressTag`      | `string/null` | `false`  | The customer's source wallet address tag if the provided source wallet address requires it          |
-| `$destinationAddressTag` | `string/null` | `false`  | The wallet address tag provided to merchants if the provided destination wallet address requires it |
+| Property                 | type     | required | description                                                                                         |
+|--------------------------|----------|:---------|:----------------------------------------------------------------------------------------------------|
+| `$orderId`               | `string` | `true`   | Unique ID for the the order                                                                         |
+| `$txHash`                | `string` | `true`   | Blockchain transaction hash of the order                                                            |
+| `$sourceAddress`         | `string` | `true`   | The provided customer's source wallet address                                                       |
+| `$destinationAddress`    | `string` | `true`   | The wallet address provided to merchants to transact to                                             |
+| `$sourceAddressTag`      | `string` | `false`  | The customer's source wallet address tag if the provided source wallet address requires it          |
+| `$destinationAddressTag` | `string` | `false`  | The wallet address tag provided to merchants if the provided destination wallet address requires it |
 
 **Result Example**
 
@@ -1381,21 +1377,21 @@ checkout
 > You can also find Testing information [here](https://docs.banxa.com/docs/order-flow)**
 >```php
 > $banxa->createIdentity(
->   $identitySharingCollection,
->   $customerDetails,
->   $customerIdentity,
->   $identityDocumentCollection,
->   $residentialAddress
+>    $identitySharingCollection,
+>    $customerDetails,
+>    $residentialAddress
+>    $customerIdentity,
+>    $identityDocumentCollection,
 > )
 >```
 
-| Property                      | type          | required | description                         |
-|-------------------------------|---------------|----------|-------------------------------------|
-| `$identitySharingCollection`  | `Object`      | `true`   | `IdentitySharingCollection` object  |
-| `$customerDetails`            | `Object`      | `true`   | `CustomerDetail` object             | 
-| `$customerIdentity`           | `Object`      | `true`   | `CustomerIdentity` object           |
-| `$identityDocumentCollection` | `Object/null` | `false`  | `IdentityDocumentCollection` object |
-| `$residentialAddress`         | `Object/null` | `false`  | `ResidentialAddress` object         |
+| Property                      | type     | required | description                         |
+|-------------------------------|----------|----------|-------------------------------------|
+| `$identitySharingCollection`  | `Object` | `true`   | `IdentitySharingCollection` object  |
+| `$customerDetails`            | `Object` | `true`   | `CustomerDetail` object             | 
+| `$residentialAddress`         | `Object` | `true`   | `ResidentialAddress` object         |
+| `$customerIdentity`           | `Object` | `true`   | `CustomerIdentity` object           |
+| `$identityDocumentCollection` | `Object` | `false`  | `IdentityDocumentCollection` object |
 
 ##### IdentitySharingCollection
 
@@ -1413,10 +1409,53 @@ checkout
  IdentitySharingProvider::create($provider, $token)
  ```
 
-| Property    | type     | description                        |
-|-------------|----------|------------------------------------|
-| `$provider` | `string` | Name of the provider e.g. 'sumsub' |
-| `$token`    | `string` | The unique provider token          |
+| Property    | type     | required  | description                        |
+|-------------|----------|:----------|------------------------------------|
+| `$provider` | `string` | `true`    | Name of the provider e.g. 'sumsub' |
+| `$token`    | `string` | `true`    | The unique provider token          |
+
+##### CustomerDetail
+```php 
+$customerDetail = CustomerDetail::create($accountReference, $mobileNumber, $emailAddress);
+ ```
+| Property             | type      | required  | description                                                                                                                                  |
+|:---------------------|:----------|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference`  | `string`  | `true`    | Unique customer reference provided by you. This should be the same value that is passed when calling the calling the Create Order endpoint.  |
+| `$mobileNumber`      | `string`  | `true`    | Mobile number of customer                                                                                                                    |
+| `$emailAddress`      | `string`  | `true`    | Email address of customer                                                                                                                    |
+
+
+##### ResidentialAddress
+```php 
+$residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb, $postCode, $state);
+ ```
+| Property       | type     | required | description                                                                                                         |
+|:---------------|:---------|:---------|:--------------------------------------------------------------------------------------------------------------------|
+| `$country`     | `string` | `true`   | Customer's country of residence. Required to be formatted using ISO 3166 two-letter country code e.g. "US" or "AU". |
+| `$addressLine` | `string` | `false`  | Customer's Street number, street name and street type/suffix.                                                       |
+| `$suburb`      | `string` | `false`  | Customer's Address city or suburb. E.g. "2 Abbey Road".                                                             |
+| `$postCode`    | `string` | `false`  | Customer's Address postal / PIN / ZIP code.                                                                         |
+| `$state`       | `string` | `false`  | Customer's Address state / region.                                                                                  |
+
+
+##### CustomerIdentity
+```php 
+ $customerIdentity = CustomerIdentity::create($givenName, $surname, $dateOfBirth);
+ ```
+| Property       | type     | required | description                                                                                                       |
+|:---------------|:---------|:---------|:------------------------------------------------------------------------------------------------------------------|
+| `$givenName`   | `string` | `true`   | Customer's Customer's given / first name.                                                                         |
+| `$surname`     | `string` | `true`   | Customer's surname / last name.                                                                                   |
+| `$dateOfBirth` | `string` | `false`  | Customer's Customer's date of birth (e.g. "1985-01-31"). Required to format as ISO 8601 Date format : YYYY-MM-DD. |
+
+
+
+##### IdentityDocumentCollection
+
+| Property     | type    | description                                 |
+|--------------|---------|---------------------------------------------|
+| `$documents` | `array` | An Array holding `IdentityDocument` objects |
+
 
 ##### IdentityDocument
 
@@ -1438,6 +1477,8 @@ checkout
 | `IdentityDocument::DOCUMENT_TYPE_SELFIE`           |
 | `IdentityDocument::DOCUMENT_TYPE_PROOF_OF_ADDRESS` |
 
+
+
 #### Full Example
 
 ```php
@@ -1452,17 +1493,17 @@ $documents = [
 ];
 
 $identitySharingCollection = IdentitySharingCollection::create($kycProviders);
-$customerDetails = CustomerDetail::create($accountReference, $mobileNumber, $emailAddress);
+$customerDetail = CustomerDetail::create($accountReference, $mobileNumber, $emailAddress);
+$residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb, $postCode, $state);
 $customerIdentity = CustomerIdentity::create($givenName, $surname, $dateOfBirth);
 $identityDocumentCollection = IdentityDocumentCollection::create($documents);
-$residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb, $postCode, $state);
 
 $banxa->createIdentity(
     $identitySharingCollection,
-    $customerDetails,
+    $customerDetail,
+    $residentialAddress,
     $customerIdentity,
-    $identityDocumentCollection,
-    $residentialAddress
+    $identityDocumentCollection
 );
 ```
 

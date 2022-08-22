@@ -48,9 +48,9 @@ class CreateIdentityTest extends BaseTestCase
         $this->createIdentity->create(
             IdentitySharingCollection::create([IdentitySharingProvider::create('foobar', 'baz')]),
             CustomerDetail::create('foobar', '123456789', 'foo@bar.baz'),
+            ResidentialAddress::create('FIZBUZ'),
             CustomerIdentity::create('FooBarBaz', 'FizBuz', '2012-01-01'),
             IdentityDocumentCollection::create([IdentityDocument::create(IdentityDocument::DOCUMENT_TYPE_PASSPORT, ['https://www.orimi.com/pdf-test.pdf'], 'BTCBaz007')]),
-            ResidentialAddress::create('FIZBUZ')
         );
     }
 
@@ -69,6 +69,7 @@ class CreateIdentityTest extends BaseTestCase
         $this->createIdentity->create(
             IdentitySharingCollection::create([IdentitySharingProvider::create('foobar', 'baz')]),
             CustomerDetail::create('foobar', '123456789', 'foo@bar.baz'),
+            ResidentialAddress::create('AU'),
             CustomerIdentity::create('FooBarBaz', 'FizBuz', '2012-01-01'),
             IdentityDocumentCollection::create([IdentityDocument::create('FOOBAR', ['https://www.orimi.com/pdf-test.pdf'], 'BTCBaz007')]),
         );
@@ -89,6 +90,7 @@ class CreateIdentityTest extends BaseTestCase
         $this->createIdentity->create(
             IdentitySharingCollection::create([IdentitySharingProvider::create('sumsub', 'bar')]),
             CustomerDetail::create('foobar', '123456789', 'foo@bar.baz'),
+            ResidentialAddress::create('AU'),
             CustomerIdentity::create('FooBarBaz', 'FizBuz', '2012-01-01'),
             IdentityDocumentCollection::create([
                 IdentityDocument::create(IdentityDocument::DOCUMENT_TYPE_DRIVING_LICENCE, [
@@ -115,6 +117,7 @@ class CreateIdentityTest extends BaseTestCase
         $this->createIdentity->create(
             IdentitySharingCollection::create([IdentitySharingProvider::create('sumsub', 'bar')]),
             CustomerDetail::create('foobar', '123456789', 'foo@bar.baz'),
+            ResidentialAddress::create('AU'),
             CustomerIdentity::create('FooBarBaz', 'FizBuz', '2012-01-01'),
             IdentityDocumentCollection::create([IdentityDocument::create(IdentityDocument::DOCUMENT_TYPE_PASSPORT, [], 'BTCBaz007')]),
         );
@@ -136,6 +139,7 @@ class CreateIdentityTest extends BaseTestCase
         $this->createIdentity->create(
             IdentitySharingCollection::create([IdentitySharingProvider::create('sumsub', 'bar')]),
             CustomerDetail::create('foobar', '123456789', 'foo@bar.baz'),
+            ResidentialAddress::create('AU'),
             CustomerIdentity::create('FooBarBaz', 'FizBuz', '2012-01-01'),
             IdentityDocumentCollection::create([
                 IdentityDocument::create(IdentityDocument::DOCUMENT_TYPE_PASSPORT, [
@@ -168,6 +172,7 @@ class CreateIdentityTest extends BaseTestCase
         $this->createIdentity->create(
             IdentitySharingCollection::create([IdentitySharingProvider::create('sumsub', 'bar')]),
             CustomerDetail::create('foobar', '123456789', 'foo@bar.baz'),
+            ResidentialAddress::create('AU'),
             CustomerIdentity::create('FooBarBaz', 'FizBuz', '2012-01-01'),
             IdentityDocumentCollection::create([
                 IdentityDocument::create(IdentityDocument::DOCUMENT_TYPE_SELFIE, [
