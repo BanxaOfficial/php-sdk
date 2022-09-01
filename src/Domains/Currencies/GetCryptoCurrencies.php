@@ -41,7 +41,7 @@ class GetCryptoCurrencies extends Domain
      */
     public function setBuyMode(): static
     {
-        $this->mode = self::SELL_MODE;
+        $this->mode = self::BUY_MODE;
         return $this;
     }
 
@@ -50,7 +50,7 @@ class GetCryptoCurrencies extends Domain
      */
     public function setSellMode(): static
     {
-        $this->mode = self::BUY_MODE;
+        $this->mode = self::SELL_MODE;
         return $this;
     }
 }
