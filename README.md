@@ -2,7 +2,7 @@
 
 
 ## Banxa official PHP SDK
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/banxa-global/php-sdk/run-tests?label=tests)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/banxa-global/php-sdk/run-tests?label=tests)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/banxa/php-sdk.svg?style=flat-square)](https://packagist.org/packages/banxa/php-sdk)
 
 ## Table of Contents
