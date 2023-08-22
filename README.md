@@ -1,7 +1,7 @@
 ![Banxa](https://banxa.com/wp-content/uploads/2022/02/image-16.png)
 
-
 ## Banxa official PHP SDK
+
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/banxa-global/php-sdk/run-tests?label=tests)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/banxa/php-sdk.svg?style=flat-square)](https://packagist.org/packages/banxa/php-sdk)
 
@@ -401,10 +401,10 @@ Banxa::create($subdomain, $apiKey, $apiSecret)
 > $banxa->getSellPaymentMethods($coinCode, $fiatCode)
 >```
 
-| Property    | type     | required | description                                                                              |
-|-------------|----------|----------|------------------------------------------------------------------------------------------|
-| `$coinCode` | `string` | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto   |
-| `$fiatCode` | `string` | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats        |
+| Property    | type     | required | description                                                                            |
+|-------------|----------|----------|----------------------------------------------------------------------------------------|
+| `$coinCode` | `string` | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto |
+| `$fiatCode` | `string` | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats      |
 
 **Result Example**
 
@@ -656,14 +656,14 @@ Get prices for [Payment Methods](#payment-methods) to obtain a payment method id
 > )
 >```
 
-| Property                | type           | required | description                                                                                                           |
-|:------------------------|:---------------|:---------|:----------------------------------------------------------------------------------------------------------------------|
-| `$startDate`            | `string`       | `true`   | Start date used for filtering orders. Must be a date in the format YYYY-MM-DD.                                        |
-| `$endDate`              | `string`       | `true`   | End date used for filtering orders. Must be a date in the format YYYY-MM-DD.                                          |
-| `$statuses`             | `array`        | `false`  | One or many order statuses (see 'Available Statuses')                                                                 |
-| `$perPage`              | `string/int`   | `false`  | Page size.                                                                                                            |
-| `$page`                 | `string/int`   | `false`  | Page to retrieve.                                                                                                     |
-| `$accountReference`     | `string`       | `false`  | Customer reference that was passed as a parameter when creating an order. Used to retrieve all orders for a customer. |
+| Property            | type         | required | description                                                                                                           |
+|:--------------------|:-------------|:---------|:----------------------------------------------------------------------------------------------------------------------|
+| `$startDate`        | `string`     | `true`   | Start date used for filtering orders. Must be a date in the format YYYY-MM-DD.                                        |
+| `$endDate`          | `string`     | `true`   | End date used for filtering orders. Must be a date in the format YYYY-MM-DD.                                          |
+| `$statuses`         | `array`      | `false`  | One or many order statuses (see 'Available Statuses')                                                                 |
+| `$perPage`          | `string/int` | `false`  | Page size.                                                                                                            |
+| `$page`             | `string/int` | `false`  | Page to retrieve.                                                                                                     |
+| `$accountReference` | `string`     | `false`  | Customer reference that was passed as a parameter when creating an order. Used to retrieve all orders for a customer. |
 
 | Available Statuses              |
 |:--------------------------------|
@@ -826,18 +826,20 @@ specify your own amount using the createDynamic method, this will depend on your
 >   $metadata,
 >   $readOnlyAmounts,
 >   $iframeRefererDomain,
+>   $optionalOrderParameters
 > );
 >```
 
-| Property                | type      | required | description                                                                                                                                                                 |
-|-------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$buyOrderTransaction`  | `Object`  | `true`   | `BuyOrderTransaction` object                                                                                                                                                |
-| `$returnUrlOnSuccess`   | `string`  | `true`   | The return url on success                                                                                                                                                   | 
-| `$returnUrlOnFailure`   | `string`  | `false`  | The return url on failure                                                                                                                                                   | 
-| `$returnUrlOnCancelled` | `string`  | `false`  | The return url on cancelled                                                                                                                                                 | 
-| `$metadata`             | `string`  | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
-| `$readOnlyAmounts`      | `boolean` | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
-| `$iframeRefererDomain`  | `string`  | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
+| Property                   | type      | required | description                                                                                                                                                                 |
+|----------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$buyOrderTransaction`     | `Object`  | `true`   | `BuyOrderTransaction` object                                                                                                                                                |
+| `$returnUrlOnSuccess`      | `string`  | `true`   | The return url on success                                                                                                                                                   | 
+| `$returnUrlOnFailure`      | `string`  | `false`  | The return url on failure                                                                                                                                                   | 
+| `$returnUrlOnCancelled`    | `string`  | `false`  | The return url on cancelled                                                                                                                                                 | 
+| `$metadata`                | `string`  | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
+| `$readOnlyAmounts`         | `boolean` | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
+| `$iframeRefererDomain`     | `string`  | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
+| `$optionalOrderParameters` | `Object`  | `false`  | `optionalOrderParameters` object                                                                                                                                            |
 
 ---
 
@@ -923,6 +925,27 @@ specify your own amount using the createDynamic method, this will depend on your
 | `$blockchain`       | `string`            | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
 | `$walletAddressTag` | `string`            | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
+---
+> **optionalOrderParameters**
+>
+>```php
+>   $optionalOrderParameters = optionalOrderParameters::create(
+>       $sourceAddress, 
+>       $sourceAddressTag, 
+>       $email, 
+>       $mobile, 
+>   );
+>```
+
+| Property            | type          | required | description                                                                                                                                             |
+|---------------------|---------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$sourceAddress`    | `string/null` | `false`  | Source wallet address. Should be sent for sell cryptocurrency orders only.                                                                              |
+| `$sourceAddressTag` | `string/null` | `false`  | Source wallet address tag or memo. Should be sent for sell cryptocurrency orders only. Required when source wallet address for BNB (Memo) or XRP (Tag). |
+| `$email`            | `string/null` | `false`  | Customer's email address. This will pre-populate the customers' email address field when they are redirected to Banxa checkout                          |
+| `$mobile`           | `string/null` | `false`  | Customer's mobile number. This will pre-populate the customers' mobile number field when they are redirected to Banxa checkout                          |
+
+---
+
 > **Buy order full example**
 >
 >```php
@@ -938,6 +961,9 @@ specify your own amount using the createDynamic method, this will depend on your
 >$buyOrderTransaction = BuyOrderTransaction::createDynamic($accountReference, $source, $target, null, $targetAmount, $walletAddress, null, $paymentMethodId, $blockchain, $walletAddressTag); // Dynamic
 >```
 >```php
+>$optionalOrderParameters = OptionalOrderParameters::create($sourceAddress, $sourceAddressTag, $email, $mobile);
+>```
+>```php
 > $banxa->createBuyOrder(
 >     $buyOrderTransaction,
 >     $returnUrlOnSuccess,
@@ -946,6 +972,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >     $metadata,
 >     $readOnlyAmounts,
 >     $iframeRefererDomain,
+>     $optionalOrderParameters
 > );
 >```
 >
@@ -1051,11 +1078,11 @@ specify your own amount using the createDynamic method, this will depend on your
 > );
 >```
 
-| Property      | type           | required | description              |
-|---------------|----------------|----------|--------------------------|
-| `$name`       | `string`       | `true`   | The name of the NFT      |
-| `$collection` | `string`       | `true`   | The Collection the NFT   |
-| `$nftMedia`   | `object`       | `true`   | `NftMedia` object        |
+| Property      | type     | required | description            |
+|---------------|----------|----------|------------------------|
+| `$name`       | `string` | `true`   | The name of the NFT    |
+| `$collection` | `string` | `true`   | The Collection the NFT |
+| `$nftMedia`   | `object` | `true`   | `NftMedia` object      |
 
 ---
 > **Create VideoNftMedia**
@@ -1069,9 +1096,9 @@ specify your own amount using the createDynamic method, this will depend on your
 >   $nftMedia = ImageNftMedia::create($link);
 >```
 
-| Property      | type           | required | description             |
-|---------------|----------------|----------|-------------------------|
-| `link`        | `string`       | `true`   | A link to the Nft video |
+| Property | type     | required | description             |
+|----------|----------|----------|-------------------------|
+| `link`   | `string` | `true`   | A link to the Nft video |
 
 ---
 
@@ -1147,18 +1174,20 @@ specify your own amount using the createDynamic method, this will depend on your
 >    $metadata,
 >    $readOnlyAmounts,
 >    $iframeRefererDomain,
+>    $optionalOrderParameters,
 > )
 >```
 
-| Property                | type      | required | description                                                                                                                                                                 |
-|-------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$sellOrderTransaction` | `Object`  | `true`   | `SellOrdertransaction` object                                                                                                                                               |
-| `$returnUrlOnSuccess`   | `string`  | `true`   | The return url on success                                                                                                                                                   | 
-| `$returnUrlOnFailure`   | `string`  | `false`  | The return url on failure                                                                                                                                                   | 
-| `$returnUrlOnCancelled` | `string`  | `false`  | The return url on cancelled                                                                                                                                                 | 
-| `$metadata`             | `string`  | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
-| `$readOnlyAmounts`      | `boolean` | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
-| `$iframeRefererDomain`  | `string`  | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
+| Property                   | type      | required | description                                                                                                                                                                 |
+|----------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$sellOrderTransaction`    | `Object`  | `true`   | `SellOrdertransaction` object                                                                                                                                               |
+| `$returnUrlOnSuccess`      | `string`  | `true`   | The return url on success                                                                                                                                                   | 
+| `$returnUrlOnFailure`      | `string`  | `false`  | The return url on failure                                                                                                                                                   | 
+| `$returnUrlOnCancelled`    | `string`  | `false`  | The return url on cancelled                                                                                                                                                 | 
+| `$metadata`                | `string`  | `false`  | Free form string that you can use to send us any information that will be returned in the Get Orders endpoint                                                               | 
+| `$readOnlyAmounts`         | `boolean` | `false`  | Will cause the cryptocurrency and fiat amounts on the Banxa screens to be read-only and un-editable.                                                                        |
+| `$iframeRefererDomain`     | `string`  | `false`  | Used if you are embedding an iFrame. This must be the exact domain where the iFrame will be hosted. e.g. [yourCompany].com. Do not include https:// in front of the domain. |
+| `$optionalOrderParameters` | `Object`  | `false`  | `optionalOrderParameters` object                                                                                                                                            |
 
 ---
 
@@ -1250,6 +1279,27 @@ specify your own amount using the createDynamic method, this will depend on your
 | `$blockchain`       | `string`            | `false`  | Blockchain code, the list of available blockchains per coin see [Crypto](#crypto) for all available blockchains per coin                      |
 | `$walletAddressTag` | `string`            | `false`  | Wallet tag or memo associated with the wallet address. Should be sent for buy cryptocurrency orders only for BNB (Memo) or XRP (Tag).         |
 
+---
+> **optionalOrderParameters**
+>
+>```php
+>   $optionalOrderParameters = optionalOrderParameters::create(
+>       $sourceAddress, 
+>       $sourceAddressTag, 
+>       $email, 
+>       $mobile, 
+>   );
+>```
+
+| Property            | type          | required | description                                                                                                                                             |
+|---------------------|---------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$sourceAddress`    | `string/null` | `false`  | Source wallet address. Should be sent for sell cryptocurrency orders only.                                                                              |
+| `$sourceAddressTag` | `string/null` | `false`  | Source wallet address tag or memo. Should be sent for sell cryptocurrency orders only. Required when source wallet address for BNB (Memo) or XRP (Tag). |
+| `$email`            | `string/null` | `false`  | Customer's email address. This will pre-populate the customers' email address field when they are redirected to Banxa checkout                          |
+| `$mobile`           | `string/null` | `false`  | Customer's mobile number. This will pre-populate the customers' mobile number field when they are redirected to Banxa checkout                          |
+
+---
+
 > **Sell order full example**
 >
 >```php
@@ -1265,6 +1315,9 @@ specify your own amount using the createDynamic method, this will depend on your
 >$sellOrderTransaction = SellOrderTransaction::createDynamic($accountReference, $source, $target, null, $targetAmount, null, $refundAddress, $paymentMethodId, $blockchain, $walletAddressTag); // Dynamic
 >```
 >```php
+>$optionalOrderParameters = OptionalOrderParameters::create($sourceAddress, $sourceAddressTag, $email, $mobile);
+>```
+>```php
 > $banxa->createSellOrder(
 >     $sellOrderTransaction,
 >     $returnUrlOnSuccess,
@@ -1273,6 +1326,7 @@ specify your own amount using the createDynamic method, this will depend on your
 >     $metadata,
 >     $readOnlyAmounts,
 >     $iframeRefererDomain,
+>     $optionalOrderParameters,
 > );
 >```
 >
@@ -1409,26 +1463,29 @@ checkout
  IdentitySharingProvider::create($provider, $token)
  ```
 
-| Property    | type     | required  | description                        |
-|-------------|----------|:----------|------------------------------------|
-| `$provider` | `string` | `true`    | Name of the provider e.g. 'sumsub' |
-| `$token`    | `string` | `true`    | The unique provider token          |
+| Property    | type     | required | description                        |
+|-------------|----------|:---------|------------------------------------|
+| `$provider` | `string` | `true`   | Name of the provider e.g. 'sumsub' |
+| `$token`    | `string` | `true`   | The unique provider token          |
 
 ##### CustomerDetail
+
 ```php 
 $customerDetail = CustomerDetail::create($accountReference, $mobileNumber, $emailAddress);
  ```
-| Property             | type      | required  | description                                                                                                                                  |
-|:---------------------|:----------|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------|
-| `$accountReference`  | `string`  | `true`    | Unique customer reference provided by you. This should be the same value that is passed when calling the calling the Create Order endpoint.  |
-| `$mobileNumber`      | `string`  | `true`    | Mobile number of customer                                                                                                                    |
-| `$emailAddress`      | `string`  | `true`    | Email address of customer                                                                                                                    |
 
+| Property            | type     | required | description                                                                                                                                 |
+|:--------------------|:---------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| `$accountReference` | `string` | `true`   | Unique customer reference provided by you. This should be the same value that is passed when calling the calling the Create Order endpoint. |
+| `$mobileNumber`     | `string` | `true`   | Mobile number of customer                                                                                                                   |
+| `$emailAddress`     | `string` | `true`   | Email address of customer                                                                                                                   |
 
 ##### ResidentialAddress
+
 ```php 
 $residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb, $postCode, $state);
  ```
+
 | Property       | type     | required | description                                                                                                         |
 |:---------------|:---------|:---------|:--------------------------------------------------------------------------------------------------------------------|
 | `$country`     | `string` | `true`   | Customer's country of residence. Required to be formatted using ISO 3166 two-letter country code e.g. "US" or "AU". |
@@ -1437,25 +1494,23 @@ $residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb
 | `$postCode`    | `string` | `false`  | Customer's Address postal / PIN / ZIP code.                                                                         |
 | `$state`       | `string` | `false`  | Customer's Address state / region.                                                                                  |
 
-
 ##### CustomerIdentity
+
 ```php 
  $customerIdentity = CustomerIdentity::create($givenName, $surname, $dateOfBirth);
  ```
+
 | Property       | type     | required | description                                                                                                       |
 |:---------------|:---------|:---------|:------------------------------------------------------------------------------------------------------------------|
 | `$givenName`   | `string` | `true`   | Customer's Customer's given / first name.                                                                         |
 | `$surname`     | `string` | `true`   | Customer's surname / last name.                                                                                   |
 | `$dateOfBirth` | `string` | `false`  | Customer's Customer's date of birth (e.g. "1985-01-31"). Required to format as ISO 8601 Date format : YYYY-MM-DD. |
 
-
-
 ##### IdentityDocumentCollection
 
 | Property     | type    | description                                 |
 |--------------|---------|---------------------------------------------|
 | `$documents` | `array` | An Array holding `IdentityDocument` objects |
-
 
 ##### IdentityDocument
 
@@ -1476,8 +1531,6 @@ $residentialAddress = ResidentialAddress::create($country, $addressLine, $suburb
 | `IdentityDocument::DOCUMENT_TYPE_IDENTIFICATION`   |
 | `IdentityDocument::DOCUMENT_TYPE_SELFIE`           |
 | `IdentityDocument::DOCUMENT_TYPE_PROOF_OF_ADDRESS` |
-
-
 
 #### Full Example
 
