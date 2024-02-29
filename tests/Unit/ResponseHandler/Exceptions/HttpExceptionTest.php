@@ -29,7 +29,7 @@ class HttpExceptionTest extends BaseTestCase
     public function exceptionDataProvider(): array
     {
         return [
-            'Bad Request'          => [
+            'Bad Request'                  => [
                 [
                     'code'            => $code = 400,
                     'expectedMessage' => 'Could not find source (Code: 3220)',
@@ -38,7 +38,16 @@ class HttpExceptionTest extends BaseTestCase
                     'responseData'    => '{"errors": {"status": 400,"code": 3220,"title": "Could not find source"}}'
                 ]
             ],
-            'Unauthorized'         => [
+            'Bad Request without warnings' => [
+                [
+                    'code'            => $code = 400,
+                    'expectedMessage' => '{"errors": {"status": 400}}',
+                    'expectedCode'    => $code,
+                    'exceptionClass'  => HttpException::class,
+                    'responseData'    => '{"errors": {"status": 400}}'
+                ]
+            ],
+            'Unauthorized'                 => [
                 [
                     'code'            => $code = 401,
                     'expectedMessage' => 'You are not authorized to access this resource. (Code: 40104)',
@@ -47,7 +56,7 @@ class HttpExceptionTest extends BaseTestCase
                     'responseData'    => '{"errors": {"status": 401,"code": 40104,"title": "You are not authorized to access this resource."}}'
                 ]
             ],
-            'Forbidden'            => [
+            'Forbidden'                    => [
                 [
                     'code'            => $code = 403,
                     'expectedMessage' => HttpException::FORBIDDEN_EXCEPTION_MESSAGE,
@@ -55,7 +64,7 @@ class HttpExceptionTest extends BaseTestCase
                     'exceptionClass'  => HttpException::class,
                 ]
             ],
-            'Validation exception' => [
+            'Validation exception'         => [
                 [
                     'code'            => $code = 422,
                     'expectedMessage' => HttpException::VALIDATION_EXCEPTION_MESSAGE . ': The start date field is required., The end date field is required.',
@@ -64,7 +73,7 @@ class HttpExceptionTest extends BaseTestCase
                     'responseData'    => '{"errors":{"status":422,"code":422,"title":"The given data was invalid.","detail":{"start_date":"The start date field is required.","end_date":"The end date field is required."}}}'
                 ]
             ],
-            'Too many requests'    => [
+            'Too many requests'            => [
                 [
                     'code'            => $code = 429,
                     'expectedMessage' => HttpException::TOO_MANY_REQUESTS_EXCEPTION_MESSAGE,
@@ -72,7 +81,7 @@ class HttpExceptionTest extends BaseTestCase
                     'exceptionClass'  => HttpException::class,
                 ]
             ],
-            'Server exception'     => [
+            'Server exception'             => [
                 [
                     'code'            => $code = 500,
                     'expectedMessage' => ServerException::SERVER_EXCEPTION_MESSAGE,
@@ -80,7 +89,8 @@ class HttpExceptionTest extends BaseTestCase
                     'exceptionClass'  => ServerException::class
                 ]
             ],
-            'Unknown'              => [
+
+            'Unknown'                      => [
                 [
                     'code'            => 501,
                     'expectedMessage' => UnknownException::UNKNOWN_MESSAGE,
@@ -90,4 +100,5 @@ class HttpExceptionTest extends BaseTestCase
             ]
         ];
     }
+
 }

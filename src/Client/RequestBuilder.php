@@ -14,8 +14,7 @@ class RequestBuilder
         'Content-Type'    => "application/json",
         'Accept-Encoding' => "gzip, deflate, br",
         'Accept'          => "*/*",
-        'x-banxa-sdk'     => 'x-ref-sdk-2021',
-        'Cookie'          => 'XDEBUG_SESSION=PHPSTORM'
+        'x-banxa-sdk'     => 'x-ref-sdk-2021'
     ];
     /**
      * @var string[]
