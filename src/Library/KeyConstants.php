@@ -13,9 +13,12 @@ class KeyConstants
     public const _TARGET = 'target';
     public const _SOURCE_AMOUNT = 'source_amount';
     public const _TARGET_AMOUNT = 'target_amount';
+    public const _SOURCE_ADDRESS = 'source_address';
+    public const _SOURCE_ADDRESS_TAG = 'source_address_tag';
     public const _PAYMENT_METHOD_ID = 'payment_method_id';
     public const _ACCOUNT_REFERENCE = 'account_reference';
     public const _BLOCKCHAIN = 'blockchain';
+    public const _MOBILE = 'mobile';
     public const _MOBILE_NUMBER = 'mobile_number';
     public const _EMAIL = 'email';
     public const _CUSTOMER_IDENTITY = 'customer_identity';

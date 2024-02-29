@@ -15,6 +15,7 @@ use Banxa\Domains\Orders\Builders\BuyOrderTransaction;
 use Banxa\Domains\Orders\Builders\Nft;
 use Banxa\Domains\Orders\Builders\NftBuyOrderTransaction;
 use Banxa\Domains\Orders\Builders\NftData;
+use Banxa\Domains\Orders\Builders\OptionalOrderParameters;
 use Banxa\Domains\Orders\Builders\SellOrderTransaction;
 use Banxa\Domains\Orders\Builders\VideoNftMedia;
 use Banxa\Exceptions\Identity\DocumentTypeValidationException;
@@ -173,7 +174,10 @@ class BanxaTest extends BaseTestCase
             ->shouldReceive('request')
             ->andReturn($response);
 
-        $this->assertIsArray(Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->getOrder('84cecea94e3b8c08386623e46503aebc'));
+        $this->assertIsArray(
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->getOrder('84cecea94e3b8c08386623e46503aebc')
+        );
     }
 
     /**
@@ -186,7 +190,10 @@ class BanxaTest extends BaseTestCase
             ->shouldReceive('request')
             ->andReturn($response);
 
-        $this->assertIsArray(Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->getAllBuyPrices('AUD', 'BTC', 100.25, 'BTC'));
+        $this->assertIsArray(
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->getAllBuyPrices('AUD', 'BTC', 100.25, 'BTC')
+        );
     }
 
     /**
@@ -199,7 +206,10 @@ class BanxaTest extends BaseTestCase
             ->shouldReceive('request')
             ->andReturn($response);
 
-        $this->assertIsArray(Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->getBuyPrice('AUD', 'BTC', 100.25, 101, 'BTC'));
+        $this->assertIsArray(
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->getBuyPrice('AUD', 'BTC', 100.25, 101, 'BTC')
+        );
     }
 
     /**
@@ -212,7 +222,10 @@ class BanxaTest extends BaseTestCase
             ->shouldReceive('request')
             ->andReturn($response);
 
-        $this->assertIsArray(Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->getAllSellPrices('AUD', 'BTC', 100.25));
+        $this->assertIsArray(
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->getAllSellPrices('AUD', 'BTC', 100.25)
+        );
     }
 
     /**
@@ -225,7 +238,10 @@ class BanxaTest extends BaseTestCase
             ->shouldReceive('request')
             ->andReturn($response);
 
-        $this->assertIsArray(Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->getSellPrice('AUD', 'BTC', 1, 2102));
+        $this->assertIsArray(
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->getSellPrice('AUD', 'BTC', 1, 2102)
+        );
     }
 
     /**
@@ -239,14 +255,15 @@ class BanxaTest extends BaseTestCase
             ->andReturn($response);
 
         $this->assertIsArray(
-            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->getOrders(
-                '2012-01-01',
-                '2012-02-01',
-                [OrderStatus::EXPIRED],
-                100,
-                1,
-                'reference-121'
-            )
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->getOrders(
+                    '2012-01-01',
+                    '2012-02-01',
+                    [OrderStatus::EXPIRED],
+                    100,
+                    1,
+                    'reference-121'
+                )
         );
     }
 
@@ -269,16 +286,26 @@ class BanxaTest extends BaseTestCase
             null,
             null
         );
+
+        $optionalOrderParameters = OptionalOrderParameters::create(
+            'test001asdhjsaklda025412',
+            "12345",
+            "BTC@test.com",
+            '234533452',
+        );
+
         $this->assertIsArray(
-            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->createBuyOrder(
-                $orderTransaction,
-                'https://hello.world',
-                'https://hello.world',
-                'https://hello.world',
-                'metadatastring',
-                true,
-                'https://test'
-            )
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->createBuyOrder(
+                    $orderTransaction,
+                    'https://hello.world',
+                    'https://hello.world',
+                    'https://hello.world',
+                    'metadatastring',
+                    true,
+                    'https://test',
+                    $optionalOrderParameters
+                )
         );
     }
 
@@ -303,16 +330,26 @@ class BanxaTest extends BaseTestCase
             null,
             null
         );
+
+        $optionalOrderParameters = OptionalOrderParameters::create(
+            'test001asdhjsaklda025412',
+            "12345",
+            "BTC@test.com",
+            '234533452',
+        );
+
         $this->assertIsArray(
-            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->createBuyOrder(
-                $orderTransaction,
-                'https://hello.world',
-                'https://hello.world',
-                'https://hello.world',
-                'metadatastring',
-                true,
-                'https://test'
-            )
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->createBuyOrder(
+                    $orderTransaction,
+                    'https://hello.world',
+                    'https://hello.world',
+                    'https://hello.world',
+                    'metadatastring',
+                    true,
+                    'https://test',
+                    $optionalOrderParameters
+                )
         );
     }
 
@@ -335,16 +372,25 @@ class BanxaTest extends BaseTestCase
             null,
             null
         );
+        $optionalOrderParameters = OptionalOrderParameters::create(
+            'test001asdhjsaklda025412',
+            "12345",
+            "BTC",
+            '234533452',
+        );
+
         $this->assertIsArray(
-            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->createSellOrder(
-                $orderTransaction,
-                'https://hello.world',
-                'https://hello.world',
-                'https://hello.world',
-                'metadatastring',
-                true,
-                'https://test'
-            )
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->createSellOrder(
+                    $orderTransaction,
+                    'https://hello.world',
+                    'https://hello.world',
+                    'https://hello.world',
+                    'metadatastring',
+                    true,
+                    'https://test',
+                    $optionalOrderParameters
+                )
         );
     }
 
@@ -370,16 +416,25 @@ class BanxaTest extends BaseTestCase
             null,
             null
         );
+        $optionalOrderParameters = OptionalOrderParameters::create(
+            'test001asdhjsaklda025412',
+            "12345",
+            "BTC",
+            '234533452',
+        );
+
         $this->assertIsArray(
-            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->createSellOrder(
-                $orderTransaction,
-                'https://hello.world',
-                'https://hello.world',
-                'https://hello.world',
-                'metadatastring',
-                true,
-                'https://test'
-            )
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->createSellOrder(
+                    $orderTransaction,
+                    'https://hello.world',
+                    'https://hello.world',
+                    'https://hello.world',
+                    'metadatastring',
+                    true,
+                    'https://test',
+                    $optionalOrderParameters
+                )
         );
     }
 
@@ -409,15 +464,16 @@ class BanxaTest extends BaseTestCase
             ['reference' => 'ref-134233']
         );
         $this->assertIsArray(
-            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)->createNftBuyOrder(
-                $orderTransaction,
-                $nftData,
-                'https://hello.world',
-                'https://hello.world',
-                'https://hello.world',
-                'https://hello.world',
+            Banxa::create('SUBDOMAIN', 'API', 'SECRET', true)
+                ->createNftBuyOrder(
+                    $orderTransaction,
+                    $nftData,
+                    'https://hello.world',
+                    'https://hello.world',
+                    'https://hello.world',
+                    'https://hello.world',
 
-            )
+                )
         );
     }
 

@@ -3,6 +3,7 @@
 namespace Banxa\Domains\Orders;
 
 use Banxa\Domains\Domain;
+use Banxa\Domains\Orders\Builders\OptionalOrderParameters;
 use Banxa\Domains\Orders\Builders\OrderTransaction;
 use Banxa\Library\KeyConstants;
 
@@ -12,6 +13,13 @@ class CreateOrder extends Domain
      * @var string
      */
     private string $path = 'api/orders';
+    private OptionalOrderParameters|null $optionalOrderParameters = null;
+
+    public function setOptionOrderParameters(OptionalOrderParameters|null $optionalOrderParameters): static
+    {
+        $this->optionalOrderParameters = $optionalOrderParameters;
+        return $this;
+    }
 
     /**
      * @param OrderTransaction $orderTransaction
@@ -42,6 +50,9 @@ class CreateOrder extends Domain
                 ])
             )
         );
+        if (isset($this->optionalOrderParameters)) {
+            $payload = array_merge($payload, $this->optionalOrderParameters->toArray());
+        }
         if ($readOnlyAmounts) {
             $payload = array_merge(
                 $payload,

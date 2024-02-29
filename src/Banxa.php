@@ -18,6 +18,7 @@ use Banxa\Domains\Identity\CreateIdentity;
 use Banxa\Domains\Orders\Builders\BuyOrderTransaction;
 use Banxa\Domains\Orders\Builders\NftBuyOrderTransaction;
 use Banxa\Domains\Orders\Builders\NftData;
+use Banxa\Domains\Orders\Builders\OptionalOrderParameters;
 use Banxa\Domains\Orders\Builders\SellOrderTransaction;
 use Banxa\Domains\Orders\ConfirmSellOrder;
 use Banxa\Domains\Orders\CreateNftOrder;
@@ -290,6 +291,7 @@ class Banxa
      * @param string|null $metaData
      * @param bool $readOnlyAmounts
      * @param string|null $iframeRefererDomain
+     * @param OptionalOrderParameters|null $optionalOrderParameters
      * @return array
      * @throws JsonException
      */
@@ -301,16 +303,19 @@ class Banxa
         string|null $metaData = null,
         bool $readOnlyAmounts = false,
         string|null $iframeRefererDomain = null,
+        OptionalOrderParameters|null $optionalOrderParameters = null
     ): array {
-        return (new CreateOrder($this->httpClient))->create(
-            $buyOrderTransaction,
-            $returnUrlOnSuccess,
-            $returnUrlOnFailure,
-            $returnUrlOnCancelled,
-            $metaData,
-            $readOnlyAmounts,
-            $iframeRefererDomain
-        );
+        return (new CreateOrder($this->httpClient))
+            ->setOptionOrderParameters($optionalOrderParameters)
+            ->create(
+                $buyOrderTransaction,
+                $returnUrlOnSuccess,
+                $returnUrlOnFailure,
+                $returnUrlOnCancelled,
+                $metaData,
+                $readOnlyAmounts,
+                $iframeRefererDomain
+            );
     }
 
     /**
@@ -344,7 +349,6 @@ class Banxa
     /**
      * @param IdentitySharingCollection $identitySharingCollection
      * @param CustomerDetail $customerDetails
-     * @param ResidentialAddress $residentialAddress
      * @param CustomerIdentity $customerIdentity
      * @param IdentityDocumentCollection|null $identityDocumentCollection
      * @return array
@@ -374,6 +378,7 @@ class Banxa
      * @param string|null $metaData
      * @param bool $readOnlyAmounts
      * @param string|null $iframeRefererDomain
+     * @param OptionalOrderParameters|null $optionalOrderParameters
      * @return array
      * @throws JsonException
      */
@@ -385,16 +390,19 @@ class Banxa
         string|null $metaData = null,
         bool $readOnlyAmounts = false,
         string|null $iframeRefererDomain = null,
+        OptionalOrderParameters|null $optionalOrderParameters = null
     ): array {
-        return (new CreateOrder($this->httpClient))->create(
-            $sellOrderTransaction,
-            $returnUrlOnSuccess,
-            $returnUrlOnFailure,
-            $returnUrlOnCancelled,
-            $metaData,
-            $readOnlyAmounts,
-            $iframeRefererDomain
-        );
+        return (new CreateOrder($this->httpClient))
+            ->setOptionOrderParameters($optionalOrderParameters)
+            ->create(
+                $sellOrderTransaction,
+                $returnUrlOnSuccess,
+                $returnUrlOnFailure,
+                $returnUrlOnCancelled,
+                $metaData,
+                $readOnlyAmounts,
+                $iframeRefererDomain
+            );
     }
 
     /**
